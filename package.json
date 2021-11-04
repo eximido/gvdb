@@ -1,0 +1,9 @@
+{
+	"name": "gv-json-creator",
+	"version": "0.1.0",
+	"description": "creates json from text files",
+	"scripts": {
+		"build": "node index.js"
+	},
+	"license": "Apache-2.0"
+}
