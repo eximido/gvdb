@@ -18,11 +18,15 @@ const pathOut = 'build';
 			const files = await fs.promises.readdir(dir);
 			await Promise.all(files.map(async (file) => {
 				const contents = await fs.promises.readFile(path.join(dir, file), 'utf8');
-				content[file] = contents.split('\n').filter(a => !!a.trim()).join('|');
+				content[file] = contents.replace(/\r\n/g,'\n').split('\n').filter(a => !!a.trim()).join('|');
 			}));
 			if (!Object.keys(content).length) {
 				console.warn('no content in ' + dir + ', skipping');
 				return;
+			}
+			if (content['bossFinish']) {
+				content['boss'] += '|' + content['bossFinish'];
+				delete content['bossFinish'];
 			}
 			await fs.promises.writeFile(path.join(pathOut, dir + '.json'), JSON.stringify(content), 'utf8');
 		}));
@@ -37,7 +41,7 @@ const pathOut = 'build';
 			await Promise.all(files.map(async (file) => {
 				var item, found;
 				const contents = await fs.promises.readFile(path.join(dir, file), 'utf8');
-				contents.split('\n').filter(a => !!a.trim()).forEach(beastie => {
+				contents.replace(/\r\n/g,'\n').split('\n').filter(a => !!a.trim()).forEach(beastie => {
 					item = {name: beastie, hp: file};
 					if (item.hp.startsWith('50-')) {
 						item.tre = 1;
