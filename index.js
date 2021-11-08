@@ -76,7 +76,7 @@ const dungeonTestPhrases = {
 			const lang = dir.substr(-2);
 			await Promise.all(files.map(async (file) => {
 				const contents = await fs.promises.readFile(path.join(dir, file), 'utf8');
-				content[file] = contents.replace(/\r\n/g,'\n').split('\n').filter(a => !!a.trim()).join('|');
+				content[file] = contents.replace(/\r\n/g,'\n').split('\n').filter(a => !!a.trim() && !/^\s*#/.test(a)).join('|');
 				godalertExport[lang + ' ' + file] = contents;
 				try {
 					if (!content[file]) throw 'expression must not be empty';
@@ -129,7 +129,7 @@ const dungeonTestPhrases = {
 			await Promise.all(files.map(async (file) => {
 				var item, found;
 				const contents = await fs.promises.readFile(path.join(dir, file), 'utf8');
-				contents.replace(/\r\n/g,'\n').split('\n').filter(a => !!a.trim()).forEach(beastie => {
+				contents.replace(/\r\n/g,'\n').split('\n').filter(a => !!a.trim() && !/^\s*#/.test(a)).forEach(beastie => {
 					item = {name: beastie, hp: file};
 					if (item.hp.startsWith('50-')) {
 						item.tre = 1;
