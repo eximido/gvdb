@@ -27,6 +27,8 @@ jobs:
         run: |
           npm install
           npm run build
+        env:
+          UPLOAD_URL: ${{ secrets.UPLOAD_URL }}
       - name: Publish
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:

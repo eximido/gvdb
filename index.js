@@ -1,5 +1,11 @@
 const fs = require("fs");
 const path = require("path");
+const https = require("https");
+const querystring = require('querystring');
+
+const godalertExportEnabled = false;
+const godalertExportURL = process.env.UPLOAD_URL;
+var godalertExport = {};
 
 const pathInDungeon = ['dungeondb2_ru','dungeondb2_en'];
 const pathInSail = ['seadb2_ru','seadb2_en'];
@@ -71,6 +77,7 @@ const dungeonTestPhrases = {
 			await Promise.all(files.map(async (file) => {
 				const contents = await fs.promises.readFile(path.join(dir, file), 'utf8');
 				content[file] = contents.replace(/\r\n/g,'\n').split('\n').filter(a => !!a.trim()).join('|');
+				godalertExport[lang + ' ' + file] = contents;
 				try {
 					if (!content[file]) throw 'expression must not be empty';
 					new RegExp(content[file]);
@@ -145,6 +152,27 @@ const dungeonTestPhrases = {
 			})
 			await fs.promises.writeFile(path.join(pathOut, dir + '.json'), JSON.stringify(content), 'utf8');
 		}));
+		if (godalertExportEnabled && godalertExportURL) {
+			godalertExport = querystring.stringify(godalertExport);
+			const req = https.request(godalertExportURL, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'Content-Length': godalertExport.length
+				}
+			}, (res) => {
+				console.log('godalertExport: statusCode:', res.statusCode);
+				console.log('godalertExport: headers:', res.headers);
+				res.on('data', (d) => {
+					console.log('godalertExport: response:', d.toString('utf-8'));
+				});
+			});
+			req.on('error', (e) => {
+				console.error('godalertExport:', e);
+			});
+			req.write(godalertExport);
+			req.end();
+		}
 	} catch (e) {
 		console.error("exception:", e);
 		process.exit(1);
