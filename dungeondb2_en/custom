@@ -1,5 +1,5 @@
 master of this dungeon is (.*?)\.
 divine touch\. The dungeon master is (.*?)\.
-is the work of a divine author (.*?)\.
+is the work of (?:a|the) divine author (.*?)\.
 this dungeon has a little divine touch\.
 literate deity has tinkered with this dungeon
