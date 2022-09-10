@@ -5,11 +5,9 @@ tree trimmed in the shape of an arrow
 compass pointers suddenly swing meaningfully
 look away from every single direction
 A gilded weathercock
-Fire pathways on the floor lead
-Fire arrows on the floor lead
+Fire (pathway|arrow)s on the floor lead
 point towards
-Parrots in cages hung on the walls greeted the adventurers with a shout
-Parrots in cages hanging on the walls greet the adventurers with a shout
+on the walls greet(ed)? the adventurers with a shout
 A skeleton lying on the floor points
 A clumsy scribble on the wall reads
 I hid mine tresur on the
@@ -46,11 +44,9 @@ ribbons of light swirl around
 A parrot on a perch chirps
 Without any reason, .* feel
 For no reason at all, .* feel
-Looking for a treasure
-Looking for a treasury
+Looking for a treasur(e|y)
 A .* behind the bars babbles
-No treasure here, but sure is
-No treasure here, but it sure is
+No treasure here, but (it )?sure is
 thermostat in this room is broken
 climate control system is jammed
 read a blinking neon sign
@@ -100,7 +96,7 @@ statue of a monster with arms criss-crossing each other points both
 from the glittering gold dust blowing in from the
 ants marches in from the .+ and down into a hole
 each carrying a coin in its paws
-double(-| )headed arrow sign pointing
+double.headed arrow sign pointing
 X really turns out to be an arrow pointing
 guess the hint says either
 casting a rainbow shaft that points
@@ -109,3 +105,4 @@ newly minted coins drifts in from
 Lightning bugs cluster by the .+ wall
 all their hands seem to be pointing
 metallic gear suddenly shifts to point
+neither healing nor poisonous, but its temperature
