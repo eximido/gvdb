@@ -131,7 +131,7 @@ const dungeonTestPhrases = {
 				const contents = await fs.promises.readFile(path.join(dir, file), 'utf8');
 				contents.replace(/\r\n/g,'\n').split('\n').filter(a => !!a.trim() && !/^\s*#/.test(a)).forEach(beastie => {
 					item = {name: beastie, hp: file};
-					if (item.hp.startsWith('50-')) {
+					if (+item.hp.split('-').shift() >= 50) {
 						item.tre = 1;
 					}
 					if (found = content.beasties.find(element => element.name === beastie)) {
