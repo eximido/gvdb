@@ -1,7 +1,6 @@
 jumped
 trampoline
-flew over the square
-flew over a square
+flew over (a|the) square
 The rapid flow of an underground river carries .* far
 The .* hastily move .* twice
 drifted over the room to
@@ -9,3 +8,4 @@ pass straight through a room too quickly
 take a long run up and leap
 springboard trap in the floor catapults
 lighter feet, .* springs to
+running start, .* leap over the next room
